@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Route Atlas | Network Planner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="app-shell">
+        <aside class="sidebar">
+            <div class="brand-row">
+                <div class="brand-mark">RA</div>
+                <div>
+                    <p class="eyebrow">Operations intelligence</p>
+                    <h1>Route Atlas</h1>
+                </div>
+            </div>
+
+            <section class="intro-block">
+                <p class="eyebrow">Network plan / 04</p>
+                <h2>National transfer map</h2>
+                <p class="muted">Choose a start point and endpoint to model a new business transfer route.</p>
+            </section>
+
+            <form class="route-builder" id="route-builder">
+                <div class="builder-heading">
+                    <div>
+                        <p class="eyebrow">Route builder</p>
+                        <h3>Plan a movement</h3>
+                    </div>
+                    <span class="builder-step">01 / 01</span>
+                </div>
+                <label>
+                    Start point
+                    <select id="start-select" required></select>
+                </label>
+                <label>
+                    Endpoint
+                    <select id="endpoint-select" required></select>
+                </label>
+                <button class="build-button" type="submit">Calculate route <span>-></span></button>
+            </form>
+
+            <section class="metric-grid" aria-label="Network summary">
+                <article class="metric-card accent-teal">
+                    <span class="metric-label">Total distance</span>
+                    <strong id="metric-distance">--</strong>
+                    <small>miles estimated</small>
+                </article>
+                <article class="metric-card accent-orange">
+                    <span class="metric-label">Fuel forecast</span>
+                    <strong id="metric-fuel">--</strong>
+                    <small>at $3.48 / gallon</small>
+                </article>
+                <article class="metric-card accent-blue">
+                    <span class="metric-label">Transit time</span>
+                    <strong id="metric-duration">--</strong>
+                    <small>road time estimated</small>
+                </article>
+                <article class="metric-card accent-yellow">
+                    <span class="metric-label">Stops</span>
+                    <strong id="metric-stops">--</strong>
+                    <small>selected locations</small>
+                </article>
+            </section>
+
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Calculated route</p>
+                    <h3>Movement overview</h3>
+                </div>
+                <button class="icon-button" id="fit-routes" title="Fit all routes to map" aria-label="Fit all routes to map">+</button>
+            </div>
+
+            <section class="route-list" id="route-list" aria-label="Active routes"></section>
+
+            <section class="legend-block">
+                <p class="eyebrow">Map key</p>
+                <div class="legend-items">
+                    <span><i class="legend-dot start-dot"></i> Start node</span>
+                    <span><i class="legend-dot hub-dot"></i> Destination hub</span>
+                </div>
+            </section>
+
+            <footer class="sidebar-footer">
+                <span>Last updated today</span>
+                <span class="status-dot">Live model</span>
+            </footer>
+        </aside>
+
+        <section class="map-stage">
+            <div class="map-toolbar">
+                <div class="toolbar-title">
+                    <span class="live-pulse"></span>
+                    <span>United States network</span>
+                </div>
+                <div class="toolbar-actions">
+                    <button class="toolbar-button" id="toggle-labels">Hide labels</button>
+                    <button class="toolbar-button primary" id="focus-start">Focus start point</button>
+                </div>
+            </div>
+            <div id="map" aria-label="Interactive route map"></div>
+            <div class="map-caption">
+                <span><strong>Source</strong> planning model / supplied locations</span>
+                <span>Distances are directional estimates</span>
+            </div>
+            <div class="map-callout" id="map-callout">
+                <span class="callout-kicker">Selected network</span>
+                <strong>All route groups</strong>
+                <span>Click a route in the left panel to inspect its movement.</span>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
